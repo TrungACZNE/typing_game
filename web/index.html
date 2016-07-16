@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>
+      Typing game
+    </title>
+    <style type="text/css" media="screen">
+body {
+  max-width: 600px;
+  margin: auto;
+}
+#paragraph {
+  font-size: large;
+  font-family: monospace;
+  background-color: #cccccc;
+  padding: 20px;
+  margin: 20px 0px 20px 0px;
+}
+.focused {
+  border-style: solid;
+  border-width: 1px;
+}
+.container {
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+#searchresult {
+  width: 100%;
+}
+#searchresult td {
+  cursor: pointer;
+}
+    </style>
+  </head>
+  <body>
+    <div id="paragraph" class="container">
+    </div>
+    <input type="text" id="input"/>
+    
+    </br></br></br></br>
+
+    <label>Search: </label><input type="text" id="search"/>
+    <div class="container">
+      <table id="searchresult">
+      </table>
+    </div>
+
+    <script src="others.js"></script>
+    <script src="typing.js"></script>
+    <script src="search.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

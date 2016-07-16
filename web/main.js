@@ -1,0 +1,1 @@
+loadTextFromURL("lib/io.py");
