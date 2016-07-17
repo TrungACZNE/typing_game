@@ -15,7 +15,7 @@ body {
   border-width: 1px;
 }
 .container {
-  height: 300px;
+  height: 600px;
   overflow-x: hidden;
   overflow-y: scroll;
 
@@ -32,4 +32,8 @@ body {
     margin: auto;
     display: block;
     font-size: larger;
+}
+.footer {
+    position:absolute;
+    bottom: 20px
 }
