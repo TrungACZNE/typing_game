@@ -15,7 +15,8 @@ body {
   border-width: 1px;
 }
 .container {
-  height: 600px;
+  min-height: 300px;
+  max-height: 600px;
   overflow-x: hidden;
   overflow-y: scroll;
 

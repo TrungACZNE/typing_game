@@ -5,7 +5,8 @@ var
   prev = document.getElementById("prev"),
   doc;
 
-function Document(source) {
+function Document(filename, source) {
+  this.filename = filename;
   this.source = source + "\n";
   this.breaks = [];
   this.chunks = [];
@@ -59,6 +60,22 @@ Document.prototype.splitChunks = function() {
     }
 }
 
+Document.prototype.saveProgress = function() {
+  var
+    data = JSON.parse(localStorage.getItem(this.filename)) || {},
+    progress = data.progress || 0;
+  if (this.currentBreak + 1> progress) {
+    data.progress = this.currentBreak + 1;
+    localStorage.setItem(this.filename, JSON.stringify(data));
+  }
+}
+
+Document.prototype.loadProgress = function() {
+  this.loadBreak(
+    (JSON.parse(localStorage.getItem(this.filename)) || { progress: 0 }).progress
+  )
+}
+
 function sanitizeText(p) {
   var
     result1 = "",
@@ -76,7 +93,7 @@ function sanitizeText(p) {
         result2 += "\n\n";
         consecutive_newline = true;
       }
-      else
+      else if (i + 1 < result1.length && result1[i + 1] !== "\n")
         result2 += " ";
     }
     else {
@@ -89,10 +106,8 @@ function sanitizeText(p) {
 function loadBlob(raw) {
   function processKey(c) {
     if (c === "\n") {
-      console.log("Before", cursor, p.charCodeAt(cursor));
       if (p.charCodeAt(cursor) === 10) unfocus();
       while (cursor < p.length && p.charCodeAt(cursor) === 10) cursor++;
-      console.log("after", cursor, p.charCodeAt(cursor));
 
       if (cursor >= p.length)
         done();
@@ -110,7 +125,8 @@ function loadBlob(raw) {
   }
 
   function done() {
-    alert("Done");
+    alert("Done. Progress saved.");
+    doc.saveProgress();
   }
 
   function unfocus() {
@@ -163,8 +179,8 @@ function loadTextFromURL(url) {
     clearChildren(view);
     if (!text) err();
     else {
-      doc = new Document(text);
-      doc.loadBreak(0);
+      doc = new Document(url, text);
+      doc.loadProgress();
     }
   });
 }
