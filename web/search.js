@@ -9,23 +9,19 @@ getText("catalog", function(text) {
     catalog = text.split("\n")
 });
 
-function loadTextOnClick(url) {
-  return function(e) {
-    loadTextFromURL(url);
-  }
-}
-
 function setSearchResult(result) {
   clearChildren(search_result);
   for (var i in result) {
     var url = result[i];
-    var row = document.createElement("tr");
-    var rowData = document.createElement("td");
-    row.appendChild(rowData);
-    rowData.textContent = url;
-    search_result.appendChild(row);
+    var row         = document.createElement("tr");
+    var rowData     = document.createElement("td");
+    var rowDataLink = document.createElement("a");
 
-    row.onclick = loadTextOnClick(url);
+    row.appendChild(rowData);
+    rowData.appendChild(rowDataLink);
+    rowDataLink.href = "/?" + url;
+    rowDataLink.textContent = url;
+    search_result.appendChild(row);
   }
 }
 
@@ -42,4 +38,3 @@ function processSearch(e) {
 }
 
 search.onkeyup = throttle(processSearch, 500);
-

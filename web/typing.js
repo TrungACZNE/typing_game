@@ -1,20 +1,6 @@
 var view = document.getElementById("paragraph");
 var input = document.getElementById("input");
 
-function getText(url, cb) {
-  var request = new XMLHttpRequest();
-
-  request.onreadystatechange = function() {
-    if (request.readyState == 4)
-      if (request.status == 200)
-        cb(request.responseText);
-      else
-        cb(null);
-  };
-  request.open("GET", url, true);
-  request.send();
-}
-
 function loadText(p) {
   function processKey(c) {
     console.log(p[cursor] === "\n", p[cursor]);
@@ -75,3 +61,5 @@ function loadTextFromURL(url) {
     }
   });
 }
+
+loadTextFromURL(document.location.search.slice(1));

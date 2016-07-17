@@ -1,0 +1,35 @@
+body {
+  max-width: 600px;
+  margin: auto;
+  padding-top: 20px;
+}
+#paragraph {
+  font-size: large;
+  font-family: monospace;
+  background-color: #cccccc;
+  padding: 20px;
+  margin: 0px 0px 5px 0px;
+}
+.focused {
+  border-style: solid;
+  border-width: 1px;
+}
+.container {
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  border-style: solid;
+  border-width: 1px;
+}
+#searchresult {
+  width: 100%;
+}
+#search {
+    margin: 5px 0px 5px 0px;
+}
+#input {
+    margin: auto;
+    display: block;
+    font-size: larger;
+}
